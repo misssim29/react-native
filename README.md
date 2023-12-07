@@ -116,8 +116,8 @@ redux-debugger
 3. ios> 파일명> info.plist 에서 원래이름부분 변경
 
 ```
-	<key>CFBundleDisplayName</key>
-	<string>원래이름</string>
+<key>CFBundleDisplayName</key>
+<string>원래이름</string>
 ```
 
 ## 라우터(네비) 설치
@@ -128,6 +128,10 @@ npm i react-native-screens react-native-safe-area-context
 cd ios > npx pod-install (ios 전용)
 
 npm install @react-navigation/bottom-tabs
+
+## Components
+
+참고 : <https://reactnative.dev/docs/components-and-apis>
 
 ### 버튼의 종류
 

@@ -84,3 +84,44 @@ cd android
 ./gradlew wrapper clean
 cd ..
 npx react-native run-android
+
+## flipper 설치
+
+(console이나 devtool 확인하는거)
+
+powshell 관리자로 열어서 choco install openssl
+
+(ios는 watchman도 설치)
+
+npm i react-native-flipper redux-flipper rn-async-storage-flipper @react-native-async-storage/async-storage --force
+
+### flipper plugin 추천
+
+async-storage
+
+redux-debugger
+
+## 앱이름 바꾸는법
+
+![Alt text](image-6.png)
+
+1. app.json에 displayName 변경
+2. android>app>src>main>res>values>strings.xml 에서 app_name 변경
+3. ios> 파일명> info.plist 에서 원래이름부분 변경
+
+```
+	<key>CFBundleDisplayName</key>
+	<string>원래이름</string>
+```
+
+## 라우터(네비) 설치
+
+npm i @react-navigation/native @react-navigation/native-stack
+npm i react-native-screens react-native-safe-area-context
+
+cd ios > npx pod-install (ios 전용)
+
+### 버튼의 종류
+
+제일 기본적인거 : Pressable (나머지는 운영체제마다 다르게 나타날수있어서)
+Pressable, TouchableNativeFeedback, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback

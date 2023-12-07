@@ -1,5 +1,10 @@
 # REACT-NATIVE
 
+## 공식사이트
+
+리액트 공식사이트 : <https://reactnative.dev/>
+리액트 네비게이션사이트(Route) : <https://reactnavigation.org/>
+
 ## 윈도우 세팅하기
 
 1.  window powershell 에서 choco 써보고
@@ -120,6 +125,8 @@ npm i @react-navigation/native @react-navigation/native-stack
 npm i react-native-screens react-native-safe-area-context
 
 cd ios > npx pod-install (ios 전용)
+
+npm install @react-navigation/bottom-tabs
 
 ### 버튼의 종류
 

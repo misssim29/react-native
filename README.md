@@ -222,3 +222,31 @@ Redux : 앱을 끄면 데이터가 사라짐 / 보안높음
 AsyncStrage : 앱을 꺼도 데이터가 남음 / 보안낮음(완전오픈)
 
 react-native-encrypted-storage : 앱을 꺼도 데이터가 남음 / 보안높음
+
+#### Token
+
+accessToken은 보통 5분,10분 가지고있는 일시적인 토큰
+
+refreshToken은 1일,30일,1년 장기적으로 가지고있는 토큰(보안 빡세게해야함)
+
+보통 access는 redux에, refresh는 encrypted-storage에 따로 저장하는게 좋다
+
+### 웹소켓 기반 라이브러리(실시간 서버통신)
+
+npm i socket.io-client
+
+### FlatList (ScrollView 대체)
+
+서버에서 내려주는 데이터와 반복문의 조합일 경우 ScrollView 말고 FlatList를 사용한다
+
+```
+<FlatList
+    data={orders}
+    keyExtractor={item => item.orderId}
+    renderItem={renderItem}
+/>
+```
+
+### accessToken 갱신하는 방법
+
+interceptors 사용

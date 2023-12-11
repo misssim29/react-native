@@ -13,6 +13,9 @@ import {RootStackParamList} from '../../App';
 import DismissKeyboardView from '../components/DismissKeyboardView';
 import axios from 'axios';
 import {API_URL} from '@env';
+import {useDispatch} from 'react-redux';
+import userSlice from '../slices/user';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -22,7 +25,7 @@ function SignIn({navigation}: SignInScreenProps) {
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const canGoNext = email && password;
 
   const onChangeEmail = useCallback((text: any) => {
@@ -34,7 +37,6 @@ function SignIn({navigation}: SignInScreenProps) {
   const toSignUp = useCallback(() => {
     navigation.navigate('SignUp');
   }, [navigation]);
-
   const onSubmit = useCallback(async () => {
     if (loading) {
       return;
@@ -54,7 +56,24 @@ function SignIn({navigation}: SignInScreenProps) {
       });
       setLoading(false);
 
-      Alert.alert('알림', '로그인이 완료되었습니다.');
+      Alert.alert('알림', '로그인이 완료되었습니다.', [
+        {
+          onPress: () => {
+            dispatch(
+              userSlice.actions.setUser({
+                name: response.data.data.name,
+                email: response.data.data.email,
+                accessToken: response.data.data.accessToken,
+              }),
+            );
+          },
+        },
+      ]);
+
+      await EncryptedStorage.setItem(
+        'refreshToken',
+        response.data.data.refreshToken,
+      );
     } catch (error: any) {
       console.log(error);
       if (error.response) {
@@ -112,7 +131,7 @@ function SignIn({navigation}: SignInScreenProps) {
           disabled={!canGoNext}>
           <Text style={Styles.loginButtonText}>로그인</Text>
         </Pressable>
-        <Pressable onPress={toSignUp} disabled={!canGoNext || loading}>
+        <Pressable onPress={toSignUp}>
           <Text>회원가입</Text>
         </Pressable>
       </View>

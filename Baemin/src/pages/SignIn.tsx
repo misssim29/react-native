@@ -10,6 +10,9 @@ import {
 import {useCallback, useState, useRef} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
+import DismissKeyboardView from '../components/DismissKeyboardView';
+import axios from 'axios';
+import {API_URL} from '@env';
 
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -18,6 +21,7 @@ function SignIn({navigation}: SignInScreenProps) {
   const [password, setPassword] = useState('');
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const canGoNext = email && password;
 
@@ -31,17 +35,37 @@ function SignIn({navigation}: SignInScreenProps) {
     navigation.navigate('SignUp');
   }, [navigation]);
 
-  const onSubmit = useCallback(() => {
+  const onSubmit = useCallback(async () => {
+    if (loading) {
+      return;
+    }
+
     if (!email || !email.trim()) {
       return Alert.alert('알림', '이메일을 입력해주세요.');
     }
     if (!password || !password.trim()) {
       return Alert.alert('알림', '비밀번호를 입력해주세요.');
     }
-    Alert.alert('알림', '로그인 되었습니다.');
+    try {
+      setLoading(true);
+      const response = await axios.post(`${API_URL}/login`, {
+        email,
+        password,
+      });
+      setLoading(false);
+
+      Alert.alert('알림', '로그인이 완료되었습니다.');
+    } catch (error: any) {
+      console.log(error);
+      if (error.response) {
+        Alert.alert('알림', error.response.data.message);
+      }
+    } finally {
+      setLoading(false);
+    }
   }, [email, password]);
   return (
-    <View>
+    <DismissKeyboardView behavior="position">
       <View style={Styles.inputWrapper}>
         <Text style={Styles.label}>이메일</Text>
         <TextInput
@@ -88,11 +112,11 @@ function SignIn({navigation}: SignInScreenProps) {
           disabled={!canGoNext}>
           <Text style={Styles.loginButtonText}>로그인</Text>
         </Pressable>
-        <Pressable onPress={toSignUp}>
+        <Pressable onPress={toSignUp} disabled={!canGoNext || loading}>
           <Text>회원가입</Text>
         </Pressable>
       </View>
-    </View>
+    </DismissKeyboardView>
   );
 }
 
@@ -106,7 +130,7 @@ const Styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   label: {
-    fonrWeight: 'bold',
+    fontWeight: 'bold',
     fontSize: 16,
     marginBottom: 20,
   },

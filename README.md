@@ -136,4 +136,86 @@ npm install @react-navigation/bottom-tabs
 ### 버튼의 종류
 
 제일 기본적인거 : Pressable (나머지는 운영체제마다 다르게 나타날수있어서)
+
 Pressable, TouchableNativeFeedback, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback
+
+### 키보드 라이브러리(키보드가 창 안가리도록)
+
+npm i react-native-keyboard-aware-scrollview --force
+
+## 리덕스 설정
+
+npm i @reduxjs/toolkit react-redux redux-flipper
+
+Provider 안에서만 userSelector 등을 쓸 수 있는데 그래서 Appinner를 분리해준다
+
+## API
+
+### axios 설치
+
+npm i axios --force
+
+useCallback에선 async 쓸수있다
+
+### loading 관련 꿀팁
+
+버튼에서 광클하는 인간들이 있다.. 그래서 로딩중일땐 버튼의 기능을 막아놔야한다 disabled={loading}
+
+react-native에서는 도넛로딩애니메이션을 지원하는 컴포넌트가 있다 ActivityIndicator
+
+### 환경변수 관리
+
+npm i react-native-dotenv
+
+babel.config.js
+
+```
+module.exports = {
+ "presets": ["module:metro-react-native-babel-preset"],
+ "plugins": [
+   ["module:react-native-dotenv", {
+     "moduleName": "@env",
+     "path": ".env",
+     "blacklist": null,
+     "whitelist": null,
+     "safe": true,
+     "allowUndefined": true
+   }]
+ ]
+};
+```
+
+.env파일 생성
+
+```
+API_KEY=123456789abcdefghijk
+```
+
+.env.d.ts 파일 생성
+
+```
+declare module '@env' {
+  export const API_KEY: string;
+}
+```
+
+import {API_KEY} from '@env';
+
+### http 통신 허용방법
+
+<https://velog.io/@ddowoo/react-native-http%ED%86%B5%EC%8B%A0-%ED%97%88%EC%9A%A9-%EB%B0%A9%EB%B2%95-AOS-iOS>
+
+### 스토리지
+
+### 일반적인 스토리지
+
+import {AsyncStorage} from 'react-native'
+
+#### 보안에 민감한 스토리지
+
+react-native-encrypted-storage
+
+> 스토리지별 성능차이
+> Redux : 앱을 끄면 데이터가 사라짐 / 보안높음
+> AsyncStrage : 앱을 꺼도 데이터가 남음 / 보안낮음(완전오픈)
+> react-native-encrypted-storage : 앱을 꺼도 데이터가 남음 / 보안높음

@@ -207,7 +207,7 @@ import {API_KEY} from '@env';
 
 ### 스토리지
 
-### 일반적인 스토리지
+#### 일반적인 스토리지
 
 import {AsyncStorage} from 'react-native'
 
@@ -216,6 +216,9 @@ import {AsyncStorage} from 'react-native'
 react-native-encrypted-storage
 
 > 스토리지별 성능차이
-> Redux : 앱을 끄면 데이터가 사라짐 / 보안높음
-> AsyncStrage : 앱을 꺼도 데이터가 남음 / 보안낮음(완전오픈)
-> react-native-encrypted-storage : 앱을 꺼도 데이터가 남음 / 보안높음
+
+Redux : 앱을 끄면 데이터가 사라짐 / 보안높음
+
+AsyncStrage : 앱을 꺼도 데이터가 남음 / 보안낮음(완전오픈)
+
+react-native-encrypted-storage : 앱을 꺼도 데이터가 남음 / 보안높음

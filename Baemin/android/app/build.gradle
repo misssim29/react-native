@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.baemin"
+    namespace "com.misssim.baemin"
     defaultConfig {
-        applicationId "com.baemin"
+        applicationId "com.misssim.baemin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -250,3 +250,84 @@ npm i socket.io-client
 ### accessToken 갱신하는 방법
 
 interceptors 사용
+
+### 배포명 바꾸는법
+
+android>app>src>main>java>com>이름
+
+들어있던걸 com>새폴더>이름 이렇게하면 이름이 추가된다
+
+마찬가지로 android>app>src>debug>java>com>새폴더>이름 이렇게 폴더 중첩시키고
+
+com.이름 으로 되어있는걸 검색해서 나오는것들 모두 com.새폴더.이름으로 변경해준다
+
+### 권한얻기
+
+npm i react-native-permissions
+
+#### IOS
+
+> ios/Podfile
+
+![Alt text](image-7.png)
+
+> ios/이름/info.plist
+
+NSLocationWhenInUseUsageDescription 위에
+
+```
+<key>NSCameraUsageDescription</key>
+<string>배송완료 사진 촬영을 위해 카메라 권한이 필요합니다.</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>배송완료 사진 선택을 위해 라이브러리 접근 권한이 필요합니다.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>배송완료 사진 선택을 위해 라이브러리 접근 권한이 필요합니다.</string>
+```
+
+#### Android
+
+> android/app/src/main/AndroidManifest.xml
+
+```
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.VIBRATE"/>
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+```
+
+아이폰이면 npx pod-install
+
+\*\* 권한설정할때 설명 안넣으면 앱 출시할때 거절먹음...
+
+### OS 구분하기
+
+import { Platform} from 'react-native';
+
+if(Platform.OS === 'android')
+
+### 이미지크롭
+
+npm i react-native-image-crop-picker react-native-image-resizer
+
+### 이미지 form 데이터로 업로드하기
+
+```
+uri: 경로,
+name: 이름,
+type: 확장자,
+```
+
+### 스플래시 스크린 & 아이콘
+
+npm i react-native-splash-screen
+
+[스플래시](https://velog.io/@chloedev/React-native-Splash-Screen-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-iOS-android) 참고
+
+[아이콘](https://velog.io/@chloedev/React-native-%EC%95%B1-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)
+
+```
+import SplashScreen from 'react-native-splash-screen';
+SplashScreen.hide();
+```

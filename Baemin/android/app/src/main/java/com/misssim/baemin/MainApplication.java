@@ -1,4 +1,4 @@
-package com.baemin;
+package com.misssim.baemin;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

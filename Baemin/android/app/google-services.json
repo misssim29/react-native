@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116622553824",
+    "project_id": "practivebaemin",
+    "storage_bucket": "practivebaemin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116622553824:android:2d20af042aa6fbd7371685",
+        "android_client_info": {
+          "package_name": "com.misssim.baemin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXS5K4mPmPy-PWi0VoJNlA40uP8IWCtQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

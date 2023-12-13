@@ -331,3 +331,25 @@ npm i react-native-splash-screen
 import SplashScreen from 'react-native-splash-screen';
 SplashScreen.hide();
 ```
+
+### 푸시알림 (onesignal)
+
+> onesignal
+> [참고](https://medium.com/crossplatformkorea/onesignal-%EB%A6%AC%EC%97%91%ED%8A%B8%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C-sdk-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95-%EB%B0%8F-%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%82%AC%EC%9A%A9%EB%B2%95-6a7fd1058ee7)
+
+> firebase
+> npm i @react-native-firebase/analytics @react-native-firebase/app @react-native-firebase/messaging
+> npm i react-native-push-notification @react-native-community/push-notification-ios
+> npm i -D @types/react-native-push-notification
+
+### USB로 실제 기기 연결
+
+> 갤럭시 기준 [참고](https://m.blog.naver.com/leemonpai/222976231731)
+
+### 코드푸시
+
+앱스토어 심사중에는 코드푸시 넣지 말것
+
+[앱센터 가입](https://appcenter.ms/)
+
+[여기서 앱 만들기](https://appcenter.ms/sign-in?original_url=%2Fapps%2Fcreate) - ios, android 따로
